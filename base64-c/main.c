@@ -5,6 +5,8 @@
 #define err(...) fprintf(stderr, __VA_ARGS__);
 #define read(...) fgets(__VA_ARGS__, sizeof(__VA_ARGS__), stdin);
 
+const char base64_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
 char *encode_base64(char *src) {
     int len = strlen(src) - 1;
     if (len >= 0 && src[len] == '\n') {
