@@ -47,7 +47,7 @@ int main() {
     read(s);
     char *ans = encode_base64(s);
     if (ans == NULL) {
-	err("malloc is NULL");
+		err("malloc is NULL");
     }
     printf("%s", ans);	
     free(ans);
