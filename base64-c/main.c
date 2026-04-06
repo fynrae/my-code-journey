@@ -5,30 +5,6 @@
 #define err(...) fprintf(stderr, __VA_ARGS__);
 #define read(...) fgets(__VA_ARGS__, sizeof(__VA_ARGS__), stdin);
 
-const char base64_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-char* encode_base2_char(char c) {
-    char *result = malloc(9 * sizeof(char)); // a string that has 9 bytes, 8 for data, 1 for '\0'
-    // the binary representation (as of a string) of a char always has 8 bytes
-    for (int i = 7; i >= 0; --i) {
-	if ((c >> i) & 1)
-            result[7 - i] = '1';
-        else
-            result[7 - i] = '0';
-    }
-    result[8] = '\0';
-    return result;
-}
-
-char** encode_base2(char *s, int *size) {
-    int len = strlen(s);
-    *size = len;
-    char **result = malloc(len * sizeof(char*));
-    for (int i = 0; i < len; ++i)
-	result[i] = encode_base2_char(s[i]);
-    return result;
-}
-
 char *encode_base64(char *src) {
     int len = strlen(src) - 1;
     if (len >= 0 && src[len] == '\n') {
